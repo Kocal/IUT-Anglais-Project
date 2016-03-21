@@ -5766,9 +5766,12 @@ body {
   background: #191919;
   color: rgba(255, 255, 255, 0.9); }
 
-.avatar {
-  width: 100%;
-  max-width: 42px !important;
-  display: inline-block; }
+li.user-container > a {
+  padding: 8px; }
+
+li.user-container .avatar {
+  display: inline-block;
+  margin-right: 8px;
+  max-height: 32px !important; }
 
 /*# sourceMappingURL=app.css.map */
