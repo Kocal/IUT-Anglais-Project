@@ -2,7 +2,7 @@
 
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+@import "layout/page";
 @import "layout/footer";
 
-// navbar fixed top
-body { padding-top: 50px; }
+@import "theme/user";
