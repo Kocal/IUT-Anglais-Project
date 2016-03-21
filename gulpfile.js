@@ -1,4 +1,5 @@
 var elixir = require('laravel-elixir');
+var elixirTypscript = require('elixir-typescript');
 
 /*
  |--------------------------------------------------------------------------
@@ -13,4 +14,5 @@ var elixir = require('laravel-elixir');
 
 elixir(function(mix) {
     mix.sass('app.scss');
+    mix.typescript('app.ts')
 });
