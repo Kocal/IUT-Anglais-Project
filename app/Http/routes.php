@@ -45,5 +45,10 @@ Route::group(['middleware' => ['web']], function () {
         })->where('name', '[a-zA-Z0-9]+');
     });
 
+    Route::group(['prefix' => 'video', 'as' => 'video::'], function() {
+        Route::get('/add', ['as' => 'add', 'uses' => 'VideoController@getAdd']);
+        Route::post('/add', ['as' => 'add', 'uses' => 'VideoController@postAdd']);
+    });
+
 });
 
