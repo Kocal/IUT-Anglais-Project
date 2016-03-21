@@ -32,7 +32,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">Link</a></li>
 
-                    <li class="dropdown">
+                    <li class="dropdown user-container">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <img class="avatar" src="upload/{{ Auth::user()['avatar_url'] }}">
                             {{ Auth::user()['username'] }} <span class="caret"></span></a>

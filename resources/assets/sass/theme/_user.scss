@@ -1,5 +1,12 @@
-.avatar {
-  width: 100%;
-  max-width: 42px !important;
-  display: inline-block;
+li.user-container {
+
+  > a {
+    padding: 8px;
+  }
+
+  .avatar {
+    display: inline-block;
+    margin-right: 8px;
+    max-height: 32px !important;
+  }
 }
