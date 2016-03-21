@@ -4,14 +4,17 @@
     <title>{{ $title or 'Amarantia.fr' }}</title>
     <meta charset="utf-8">
     <meta name="description" content="{{ $description or 'Site de partage de vidéos' }}"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link type="text/css" rel="stylesheet" href="{{ asset('css/app.css') }}" media="screen, projection"/>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,100' rel='stylesheet' type='text/css'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet'
+          type='text/css'>
 </head>
 <body id="page">
 
 <header id="page__header" role="banner">
-    <nav class="navbar navbar-fixed-top navbar-default">
+    <nav class="navbar navbar-default">
         <div class="container">
 
             <div class="navbar-header">
@@ -25,12 +28,35 @@
                 <a class="navbar-brand" href="{{ route('home') }}">Amarantia.fr</a>
             </div>
 
-            <form class="navbar-right navbar-form">
-                <div class="form-group">
-                    <a href="#" class="btn btn-default">Se connecter</a>
-                    <a href="#" class="btn btn-primary">S'inscrire</a>
-                </div>
-            </form>
+            @if(Auth::check())
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Link</a></li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <img class="avatar" src="upload/{{ Auth::user()['avatar_url'] }}">
+                            {{ Auth::user()['username'] }} <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Action</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Se déconnecter</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            @else
+                <form class="navbar-right navbar-form">
+                    <div class="form-group">
+                        <a href="{{ url('/login') }}" class="btn btn-default">
+                            <i class="fa fa-btn fa-sign-in"></i> Se connecter</a>
+                        <a href="{{ url('/register') }}" class="btn btn-primary">S'inscrire</a>
+                    </div>
+                </form>
+            @endif
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="">Toast</a></li>
+            </ul>
         </div>
     </nav>
 </header>
@@ -46,5 +72,7 @@
         <p>Amarantia.fr</p>
     </div>
 </footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 </body>
 </html>
