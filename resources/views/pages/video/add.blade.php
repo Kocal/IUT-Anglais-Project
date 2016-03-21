@@ -6,12 +6,12 @@
     <div class="col-md-5">
         <h2>Aperçu</h2>
         <div class="embed-responsive embed-responsive-16by9">
-            <video controls autoplay></video>
+            <video controls autoplay muted></video>
         </div>
     </div>
     <div class="col-md-7">
         <h2>Ajouter une vidéo</h2>
-        {!! BootForm::file('Vidéo (webm, mp4)', 'video')->accept('video/webm,video/mp4,video/*') !!}
+        {!! BootForm::file('Vidéo (webm, mp4)', 'video')->accept('video/webm,video/mp4')->class('video-picker') !!}
         {!! BootForm::text("Titre", 'title') !!}
         {!! BootForm::textarea("Description", 'description') !!}
         {!! BootForm::submit("<i class='fa fa-btn fa-upload'></i> Envoyer", 'btn btn-primary') !!}
@@ -19,5 +19,8 @@
     </div>
 
     {!! BootForm::close() !!}
+@stop
 
+@section('js')
+    <script src="{{ asset('js/app.js') }}"></script>
 @stop
