@@ -27,5 +27,23 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+
+
+    Route::get('/', ['as' => 'home', function() {
+        return view('pages.index');
+    }]);
+
+    Route::auth();
+
+    Route::group(['prefix' => 'draft', 'as' => 'draft'], function() {
+        Route::get('/', function() {
+            return view('drafts.index');
+        });
+
+        Route::get('{name}', function($name) {
+            return view('drafts.' . $name);
+        })->where('name', '[a-zA-Z0-9]+');
+    });
+
 });
+
