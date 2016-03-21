@@ -29,5 +29,3 @@ function onVideoPickerChange(e: Event, videoTitle: HTMLInputElement, video: HTML
 }
 
 document.addEventListener('DOMContentLoaded', init, false)
-
-
