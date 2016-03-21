@@ -5774,4 +5774,7 @@ li.user-container .avatar {
   margin-right: 8px;
   max-height: 32px !important; }
 
+video {
+  background-color: #000; }
+
 /*# sourceMappingURL=app.css.map */
