@@ -26,7 +26,6 @@
             <time pubdate="{{ $video->created_at }}">{{ $video->created_at->toDayDateTimeString() }}</time>
             .
         </div>
-
     </div>
 
     <div class="col-md-4">

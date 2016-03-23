@@ -21,9 +21,10 @@
 
                 <div class="user">
                     <img class="avatar avatar-tiny" src="{{ asset('upload/' . $video->user->avatar_url) }}"
-                         alt="Avatar de {{ $video->user->username }}">
+                         alt="Avatar of {{ $video->user->username }}">
                     <b>{{ $video->user->username }}</b>, <time pubdate="{{ $video->created_at }}">{{ $video->created_at->toDayDateTimeString() }}</time>
                 </div>
+                <hr>
             </div>
         @endforeach
     @endif
