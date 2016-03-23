@@ -20,4 +20,8 @@ class Videos extends Model
     public function user() {
         return $this->belongsTo(User::class);
     }
+
+    public function comments() {
+        return $this->hasMany(Comments::class, 'video_id')->orderBy('created_at', 'desc');
+    }
 }
