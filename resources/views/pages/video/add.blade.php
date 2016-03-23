@@ -8,7 +8,7 @@
 
     <div class="col-md-6 col-md-push-6">
         <h2>Add a video</h2>
-        {!! BootForm::file('Video (*.webm, *.mp4, *.mp4v, *.mpg4)', 'video')
+        {!! BootForm::file('Video 20MB max (*.webm, *.mp4, *.mp4v, *.mpg4)', 'video')
                     ->accept('video/webm,video/mp4,video/mp4v,video/mpg4')->class('video-picker') !!}
 
         {!! BootForm::text("Title", 'title') !!}
