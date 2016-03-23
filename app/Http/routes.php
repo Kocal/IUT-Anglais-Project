@@ -53,7 +53,7 @@ Route::group(['middleware' => ['web']], function () {
             ->where('video_tag', '\w+');
     });
 
-    Route::get('/comment/add/{video_tag}', ['as' => 'comment::add', 'middleware' => 'auth', 'uses' => 'CommentController@add'])
+    Route::post('/comment/add/{video_tag}', ['as' => 'comment::add', 'middleware' => 'auth', 'uses' => 'CommentController@add'])
         ->where('video_tag', '\w+');
 
 });
