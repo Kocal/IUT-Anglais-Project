@@ -15,12 +15,40 @@
         <h2>{{ $video->title }}</h2>
 
         <div class="user">
-            <img class="avatar" src="{{ asset('upload/' . $video->user->avatar_url) }}" alt="Avatar de {{ $video->user->username }}">
-            Sent by <b>{{ $video->user->username }}</b>, on <time pubdate="{{ $video->created_at }}">{{ $video->created_at->toDayDateTimeString() }}</time>.
+            <img class="avatar" src="{{ asset('upload/' . $video->user->avatar_url) }}"
+                 alt="Avatar de {{ $video->user->username }}">
+            Sent by <b>{{ $video->user->username }}</b>, on
+            <time pubdate="{{ $video->created_at }}">{{ $video->created_at->toDayDateTimeString() }}</time>
+            .
         </div>
 
         <hr>
-        
+
+        <div class="add-comment">
+            {!! BootForm::open()->action(route('comment::add', ['video_tag' => $video->tag])) !!}
+            {!! BootForm::textarea(null, 'comment')->placeholder('Write here your comment...')->rows(2) !!}
+
+            <div class="text-right">
+                {!! BootForm::submit("<i class='fa fa-btn fa-upload'></i> Send", 'btn btn-primary btn-block') !!}
+            </div>
+
+            {!! BootForm::close() !!}
+        </div>
+
+        <hr>
+
+        <div class="comments">
+            @if(count($video->comments) == 0)
+                <p class="alert alert-info">
+                    There is no comment yet...
+                </p>
+            @else
+                <p>
+                    TODO: Afficher les commentaires ici
+                </p>
+            @endif
+        </div>
+
     </div>
 
     <div class="col-md-4">

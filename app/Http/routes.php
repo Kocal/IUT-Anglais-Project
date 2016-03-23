@@ -29,29 +29,32 @@ Route::get('/', function () {
 Route::group(['middleware' => ['web']], function () {
 
 
-    Route::get('/', ['as' => 'home', function() {
+    Route::get('/', ['as' => 'home', function () {
         return view('pages.index');
     }]);
 
     Route::auth();
 
-    Route::group(['prefix' => 'draft', 'as' => 'draft'], function() {
-        Route::get('/', function() {
+    Route::group(['prefix' => 'draft', 'as' => 'draft'], function () {
+        Route::get('/', function () {
             return view('drafts.index');
         });
 
-        Route::get('{name}', function($name) {
+        Route::get('{name}', function ($name) {
             return view('drafts.' . $name);
         })->where('name', '[a-zA-Z0-9]+');
     });
 
-    Route::group(['prefix' => 'video', 'as' => 'video::'], function() {
+    Route::group(['prefix' => 'video', 'as' => 'video::'], function () {
         Route::get('/add', ['as' => 'add', 'uses' => 'VideoController@getAdd']);
         Route::post('/add', ['as' => 'add', 'uses' => 'VideoController@postAdd']);
 
         Route::get('/watch/{video_tag}', ['as' => 'watch', 'uses' => 'VideoController@getWatch'])
             ->where('video_tag', '\w+');
     });
+
+    Route::get('/comment/add/{video_tag}', ['as' => 'comment::add', 'middleware' => 'auth', 'uses' => 'CommentController@add'])
+        ->where('video_tag', '\w+');
 
 });
 
