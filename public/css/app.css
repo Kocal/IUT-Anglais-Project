@@ -5766,6 +5766,10 @@ body {
   background: #191919;
   color: rgba(255, 255, 255, 0.9); }
 
+.avatar {
+  max-height: 48px;
+  border-radius: 50%; }
+
 li.user-container > a {
   padding: 8px; }
 
