@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class VideoController extends Controller
 {
@@ -42,6 +43,7 @@ class VideoController extends Controller
         $request->file('video')->move(public_path('upload') . '/videos', $data['file']);
 
         $this->create($data);
+        Session::push('messages', 'success|Your video has been added successfully');
 
         return redirect(route('video::watch', [
             'video_id' => $data['tag']
@@ -61,8 +63,23 @@ class VideoController extends Controller
     }
 
     public function getWatch(Request $request, $tag) {
+        $video = Videos::where('tag', $tag)->with('user', 'comments', 'comments.user')->first();
+
+        if(!$video) {
+            Session::push('messages', "danger|This video doesn't exists");
+            return redirect(route('video::last'));
+        }
+
         return view('pages.video.watch', [
-            'video' => Videos::where('tag', $tag)->with('user', 'comments', 'comments.user')->first()
+            'video' => $video
+        ]);
+    }
+    
+    public function getLasts(Request $request) {
+        $videos = Videos::orderBy('created_at', 'desc')->with('user')->get();
+        
+        return view('pages.video.last', [
+            'videos' => $videos
         ]);
     }
 }

@@ -51,6 +51,11 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::get('/watch/{video_tag}', ['as' => 'watch', 'uses' => 'VideoController@getWatch'])
             ->where('video_tag', '\w+');
+
+        Route::get('/lasts', ['as' => 'last', 'uses' => 'VideoController@getLasts']);
+
+//        Route::get('/user/{user?}', ['as' => 'user', 'uses' => ''])
+//            ->where('user', '\w+');
     });
 
     Route::post('/comment/add/{video_tag}', ['as' => 'comment::add', 'middleware' => 'auth', 'uses' => 'CommentController@add'])

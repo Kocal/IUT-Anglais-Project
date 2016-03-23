@@ -5757,6 +5757,9 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 70px; }
 
+#page__main {
+  padding-bottom: 30px; }
+
 #page__footer {
   position: absolute;
   bottom: 0;
@@ -5769,6 +5772,9 @@ body {
 .avatar {
   max-height: 48px;
   border-radius: 50%; }
+
+.avatar-tiny {
+  max-height: 24px; }
 
 .avatar-small {
   max-height: 32px; }
