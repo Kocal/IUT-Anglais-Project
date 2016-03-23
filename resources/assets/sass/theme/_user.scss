@@ -1,3 +1,17 @@
+.avatar {
+  max-height: 48px;
+  border-radius: 50%;
+}
+
+.avatar-tiny {
+  max-height: 24px;
+}
+
+.avatar-small {
+  max-height: 32px;
+}
+
+
 li.user-container {
 
   > a {

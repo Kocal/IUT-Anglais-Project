@@ -16,4 +16,12 @@ class Videos extends Model
     protected $dates = [
         'created_at', 'updated_at', 'deleted_at'
     ];
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    public function comments() {
+        return $this->hasMany(Comments::class, 'video_id')->orderBy('created_at', 'desc');
+    }
 }
