@@ -17,10 +17,9 @@ class VideoController extends Controller
         return Category::all($fields);
     }
 
-    //
     public function getAdd() {
         return view('pages.video.add', [
-            'categories' => $this->getCategories('category')->pluck('category')->sort()
+            'categories' => $this->getCategories(['id', 'category'])->pluck('category', 'id')->sort()
         ]);
     }
 
