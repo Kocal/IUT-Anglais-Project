@@ -3,14 +3,20 @@
 ])
 
 @section('content')
-    {!! BootForm::open()->enctype('multipart/form-data') !!}
+    {!! BootForm::open()->multipart() !!}
 
     <div class="col-md-6 col-md-push-6">
         <h2>Ajouter une vidéo</h2>
-        {!! BootForm::file('Vidéo (webm, mp4)', 'video')->accept('video/webm,video/mp4')->class('video-picker') !!}
+        {!! BootForm::file('Vidéo (*.webm, *.mp4, *.mp4v, *.mpg4)', 'video')
+                    ->accept('video/webm,video/mp4,video/mp4v,video/mpg4')->class('video-picker') !!}
+
         {!! BootForm::text("Titre", 'title') !!}
+
         {!! BootForm::textarea("Description", 'description') !!}
-        {!! BootForm::submit("<i class='fa fa-btn fa-upload'></i> Envoyer", 'btn btn-primary') !!}
+
+        {!! BootForm::select('Catégorie', 'category')->options($categories) !!}
+
+        {!! BootForm::submit("<i class='fa fa-btn fa-upload'></i> Send", 'btn btn-primary') !!}
     </div>
 
     <div class="col-md-6 col-md-pull-6">
