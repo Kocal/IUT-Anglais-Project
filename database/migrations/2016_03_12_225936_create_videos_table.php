@@ -19,6 +19,7 @@ class CreateVideosTable extends Migration
             $table->string('tag', 16);
             $table->string('title');
             $table->text('description');
+            $table->string('file');
             $table->timestamps();
             $table->softDeletes();
 

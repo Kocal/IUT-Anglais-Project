@@ -10,7 +10,7 @@ class Videos extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'user_id', 'category_id', 'tag', 'title', 'description',
+        'user_id', 'category_id', 'tag', 'file', 'title', 'description', 'created_at'
     ];
 
     protected $dates = [
