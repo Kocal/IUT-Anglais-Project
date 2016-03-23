@@ -1,3 +1,4 @@
+<?php require_once resource_path('views/functions.php'); ?>
 <!doctype html>
 <html lang="fr">
 <head>
@@ -63,6 +64,7 @@
 
 <main id="page__main" role="main">
     <div class="container">
+        <?= displayAlert(); ?>
         @yield('content')
     </div>
 </main>
