@@ -7,7 +7,6 @@ function init() {
         case '/video/add':
             return initVideoAdd()
         default:
-
     }
 }
 
