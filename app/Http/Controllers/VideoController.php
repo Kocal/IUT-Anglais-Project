@@ -61,6 +61,8 @@ class VideoController extends Controller
     }
 
     public function getWatch(Request $request, $tag) {
-
+        return view('pages.video.watch', [
+            'video' => Videos::where('tag', $tag)->with('user')->first()
+        ]);
     }
 }
