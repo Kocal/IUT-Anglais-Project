@@ -48,6 +48,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::group(['prefix' => 'video', 'as' => 'video::'], function() {
         Route::get('/add', ['as' => 'add', 'uses' => 'VideoController@getAdd']);
         Route::post('/add', ['as' => 'add', 'uses' => 'VideoController@postAdd']);
+
+        Route::get('/watch/{video_tag}', ['as' => 'watch', 'uses' => 'VideoController@getWatch'])
+            ->where('video_tag', '\w+');
     });
 
 });
