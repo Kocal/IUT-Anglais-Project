@@ -9,4 +9,6 @@ class Category extends Model
     protected $fillable = [
         'slug', 'category',
     ];
+
+    public $timestamps = false;
 }
