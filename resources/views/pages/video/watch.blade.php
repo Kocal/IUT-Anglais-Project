@@ -43,9 +43,18 @@
                     There is no comment yet...
                 </p>
             @else
-                <p>
-                    TODO: Afficher les commentaires ici
-                </p>
+                @foreach($video->comments as $comment)
+                    <p class="user">
+                        <img class="avatar avatar-small" src="{{ asset('upload/' . $comment->user->avatar_url) }}"
+                             alt="Avatar de {{ $comment->user->username }}">
+                        Written by <b>{{ $comment->user->username }}</b>, on
+                        <time pubdate="{{ $comment->created_at }}">{{ $comment->created_at->toDayDateTimeString() }}</time>
+                    </p>
+
+                    <p>{{ $comment->comment }}</p>
+
+                    <hr>
+                @endforeach
             @endif
         </div>
 
