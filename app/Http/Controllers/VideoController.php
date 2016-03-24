@@ -30,7 +30,7 @@ class VideoController extends Controller
             'video' => 'required|mimes:webm,mp4,mp4v,mpg4',
             'title' => 'required|string',
             'description' => 'required|string',
-            'category' => 'required|in:' . $this->getCategories('id')->pluck('id')
+            'category' => 'required|in:'. implode(',', $this->getCategories('id')->pluck('id')->toArray())
         ]);
 
         $data['created_at'] = Carbon::now()->timestamp;
