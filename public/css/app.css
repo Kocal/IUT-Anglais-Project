@@ -5758,7 +5758,8 @@ body {
   margin-bottom: 70px; }
 
 #page__main {
-  padding-bottom: 30px; }
+  padding-bottom: 30px;
+  word-wrap: break-word; }
 
 #page__footer {
   position: absolute;
