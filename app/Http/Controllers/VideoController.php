@@ -17,10 +17,9 @@ class VideoController extends Controller
         return Category::all($fields);
     }
 
-    //
     public function getAdd() {
         return view('pages.video.add', [
-            'categories' => $this->getCategories('category')->pluck('category')->sort()
+            'categories' => $this->getCategories(['id', 'category'])->pluck('category', 'id')->sort()
         ]);
     }
 
@@ -31,7 +30,7 @@ class VideoController extends Controller
             'video' => 'required|mimes:webm,mp4,mp4v,mpg4',
             'title' => 'required|string',
             'description' => 'required|string',
-            'category' => 'required|in:' . $this->getCategories('id')->pluck('id')
+            'category' => 'required|in:'. implode(',', $this->getCategories('id')->pluck('id')->toArray())
         ]);
 
         $data['created_at'] = Carbon::now()->timestamp;
@@ -63,7 +62,7 @@ class VideoController extends Controller
     }
 
     public function getWatch(Request $request, $tag) {
-        $video = Videos::where('tag', $tag)->with('user', 'comments', 'comments.user')->first();
+        $video = Videos::where('tag', $tag)->with('user', 'comments', 'comments.user', 'category')->first();
 
         if(!$video) {
             Session::push('messages', "danger|This video doesn't exists");
@@ -76,7 +75,9 @@ class VideoController extends Controller
     }
     
     public function getLasts(Request $request) {
-        $videos = Videos::orderBy('created_at', 'desc')->with('user')->get();
+        $videosPerPage = 4;
+
+        $videos = Videos::orderBy('created_at', 'desc')->with('user')->paginate($videosPerPage);
         
         return view('pages.video.last', [
             'videos' => $videos
