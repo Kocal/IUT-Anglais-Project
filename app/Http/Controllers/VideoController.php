@@ -62,7 +62,7 @@ class VideoController extends Controller
     }
 
     public function getWatch(Request $request, $tag) {
-        $video = Videos::where('tag', $tag)->with('user', 'comments', 'comments.user')->first();
+        $video = Videos::where('tag', $tag)->with('user', 'comments', 'comments.user', 'category')->first();
 
         if(!$video) {
             Session::push('messages', "danger|This video doesn't exists");
@@ -75,7 +75,9 @@ class VideoController extends Controller
     }
     
     public function getLasts(Request $request) {
-        $videos = Videos::orderBy('created_at', 'desc')->with('user')->get();
+        $videosPerPage = 4;
+
+        $videos = Videos::orderBy('created_at', 'desc')->with('user')->paginate($videosPerPage);
         
         return view('pages.video.last', [
             'videos' => $videos

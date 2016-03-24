@@ -17,11 +17,18 @@ class Videos extends Model
         'created_at', 'updated_at', 'deleted_at'
     ];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function comments() {
+    public function comments()
+    {
         return $this->hasMany(Comments::class, 'video_id')->orderBy('created_at', 'desc');
+    }
+
+    public function category()
+    {
+        return $this->hasOne(Category::class, 'id', 'category_id');
     }
 }
