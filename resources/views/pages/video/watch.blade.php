@@ -20,11 +20,10 @@
         </p>
 
         <div class="user">
-            <img class="avatar" src="{{ asset('upload/' . $video->user->avatar_url) }}"
+            <img class="avatar avatar-small" src="{{ asset('upload/' . $video->user->avatar_url) }}"
                  alt="Avatar de {{ $video->user->username }}">
             Sent by <b>{{ $video->user->username }}</b>, on
-            <time pubdate="{{ $video->created_at }}">{{ $video->created_at->toDayDateTimeString() }}</time>
-            .
+            <time pubdate="{{ $video->created_at }}">{{ $video->created_at->format('d/m/y \a\t h:i:s') }}</time> in <i>{{ $video->category->category }}</i>.
         </div>
     </div>
 
