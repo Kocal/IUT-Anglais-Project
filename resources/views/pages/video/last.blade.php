@@ -34,7 +34,7 @@
         </div>
 
         <div class="row text-center">
-            {!! $videos->render() !!}
+            {!! $videos->links() !!}
         </div>
 
     @endif

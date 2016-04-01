@@ -75,10 +75,12 @@ class VideoController extends Controller
     }
     
     public function getLasts(Request $request) {
-        $videosPerPage = 4;
+        $videosPerPage = 9;
 
         $videos = Videos::orderBy('created_at', 'desc')->with('user')->paginate($videosPerPage);
         
+        $videos->setPath('/video/lasts');
+ 
         return view('pages.video.last', [
             'videos' => $videos
         ]);
