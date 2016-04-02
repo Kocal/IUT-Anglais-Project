@@ -6,7 +6,7 @@
 @section('content')
     @if(count($videos) == 0)
         <p class="alert alert-info">
-            PAS DE VIDEOS AAAAAAAAAAA
+            No video was uploaded yet.
         </p>
     @else
         <div class="row">
@@ -34,7 +34,7 @@
         </div>
 
         <div class="row text-center">
-            {!! $videos->render() !!}
+            {!! $videos->links() !!}
         </div>
 
     @endif
