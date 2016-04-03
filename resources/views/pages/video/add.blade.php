@@ -13,7 +13,7 @@
 
         {!! BootForm::text("Title", 'title') !!}
 
-        {!! BootForm::textarea("Description", 'description') !!}
+        {!! BootForm::textarea("Description", 'description')->rows(3) !!}
 
         {!! BootForm::select('Category', 'category')->options($categories) !!}
 
@@ -21,7 +21,7 @@
     </div>
 
     <div class="col-md-6 col-md-pull-6">
-        <h2>Preview</h2>
+        <h2>Video preview</h2>
         <div class="embed-responsive embed-responsive-16by9">
             <video controls autoplay muted></video>
         </div>

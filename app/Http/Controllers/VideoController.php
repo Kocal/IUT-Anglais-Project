@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Http\Requests;
 use App\Videos;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 
 class VideoController extends Controller
 {
@@ -25,6 +26,7 @@ class VideoController extends Controller
 
     public function postAdd(Request $request) {
         $data = $request->all();
+        $pathVideos = public_path('upload/videos/');
 
         $this->validate($request, [
             'video' => 'required|mimes:webm,mp4,mp4v,mpg4',
@@ -38,8 +40,21 @@ class VideoController extends Controller
         $data['file'] = $data['created_at']
             . '-' . $data['tag']
             . '.' . $request->file('video')->getClientOriginalExtension();
+        $data['thumbnail'] = $data['file'] . '.jpg';
 
-        $request->file('video')->move(public_path('upload') . '/videos', $data['file']);
+        $request->file('video')->move($pathVideos, $data['file']);
+
+        $process = new Process(sprintf('ffmpeg -i %s -ss 00:00:01.000 -vframes 1 %s',
+            $pathVideos . $data['file'],
+            $pathVideos . $data['thumbnail']
+        ));
+
+        try {
+            $process->mustRun();
+            echo $process->getOutput();
+        } catch (ProcessFailedException $e) {
+            echo $e->getMessage();
+        }
 
         $this->create($data);
         Session::push('messages', 'success|Your video has been added successfully');
@@ -55,6 +70,7 @@ class VideoController extends Controller
             'category_id' => $data['category'],
             'tag' => $data['tag'],
             'file' => $data['file'],
+            'thumbnail' => $data['thumbnail'],
             'title' => trim($data['title']),
             'description' => trim($data['description']),
             'created_at' => $data['created_at'],

@@ -29,9 +29,7 @@ Route::get('/', function () {
 Route::group(['middleware' => ['web']], function () {
 
 
-    Route::get('/', ['as' => 'home', function () {
-        return view('pages.index');
-    }]);
+    Route::get('/', ['as' => 'home', 'uses' => 'PagesController@getIndex']);
 
     Route::auth();
 
@@ -46,20 +44,19 @@ Route::group(['middleware' => ['web']], function () {
     });
 
     Route::group(['prefix' => 'video', 'as' => 'video::'], function () {
-        Route::get('/add', ['as' => 'add', 'uses' => 'VideoController@getAdd']);
-        Route::post('/add', ['as' => 'add', 'uses' => 'VideoController@postAdd']);
+        Route::group(['middleware' => 'auth'], function () {
+            Route::get('/add', ['as' => 'add', 'uses' => 'VideoController@getAdd']);
+
+            Route::post('/add', ['as' => 'add', 'uses' => 'VideoController@postAdd']);
+        });
 
         Route::get('/watch/{video_tag}', ['as' => 'watch', 'uses' => 'VideoController@getWatch'])
             ->where('video_tag', '\w+');
 
         Route::get('/lasts', ['as' => 'last', 'uses' => 'VideoController@getLasts']);
-
-//        Route::get('/user/{user?}', ['as' => 'user', 'uses' => ''])
-//            ->where('user', '\w+');
     });
 
     Route::post('/comment/add/{video_tag}', ['as' => 'comment::add', 'middleware' => 'auth', 'uses' => 'CommentController@add'])
         ->where('video_tag', '\w+');
-
 });
 
