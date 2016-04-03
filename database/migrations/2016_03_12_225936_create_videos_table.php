@@ -20,6 +20,7 @@ class CreateVideosTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('file');
+            $table->string('thumbnail');
             $table->timestamps();
             $table->softDeletes();
 

@@ -9,18 +9,28 @@ function init() {
     }
 }
 function initVideoAdd() {
-    var videoPicker = document.querySelector('form .video-picker');
-    var videoTitle = document.querySelector('form #title');
-    var video = document.querySelector('form video');
-    videoPicker.addEventListener("change", function (e) {
-        onVideoPickerChange.call(videoPicker, e, videoTitle, video);
+    var $videoTitle = document.querySelector('form #title');
+    var $videoPicker = document.querySelector('form .video-picker');
+    var $video = document.querySelector('form video');
+
+    $videoPicker.addEventListener('change', function (e) {
+        onVideoPickerChange.call($videoPicker, e, $videoTitle, $video);
     }, false);
 }
-function onVideoPickerChange(e, videoTitle, video) {
+
+function onVideoPickerChange(e, videoTitle, $video) {
     var file = this.files[0];
-    videoTitle.value = file.name;
-    video.src = URL.createObjectURL(file);
+
+    if(!file) {
+        return;
+    }
+
+    $video.src = URL.createObjectURL(file);
+
+    if (videoTitle.value.length == 0)
+        videoTitle.value = file.name;
 }
+
 document.addEventListener('DOMContentLoaded', init, false);
 
 //# sourceMappingURL=app.js.map
