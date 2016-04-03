@@ -38,9 +38,9 @@
                             <img class="avatar" src="{{ url('upload/' . Auth::user()['avatar_url']) }}">
                             {{ Auth::user()['username'] }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Action</a></li>
-                            <li role="separator" class="divider"></li>
+                            {{--<li><a href="#">Action</a></li>--}}
+                            {{--<li><a href="#">Action</a></li>--}}
+                            {{--<li role="separator" class="divider"></li>--}}
                             <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Sign out</a></li>
                         </ul>
                     </li>
