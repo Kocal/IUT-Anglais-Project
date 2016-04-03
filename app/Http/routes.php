@@ -29,9 +29,7 @@ Route::get('/', function () {
 Route::group(['middleware' => ['web']], function () {
 
 
-    Route::get('/', ['as' => 'home', function () {
-        return view('pages.index');
-    }]);
+    Route::get('/', ['as' => 'home', 'uses' => 'PagesController@getIndex']);
 
     Route::auth();
 
