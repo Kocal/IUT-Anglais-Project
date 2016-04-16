@@ -29,7 +29,7 @@ class VideoController extends Controller
         $pathVideos = public_path('upload/videos/');
 
         $this->validate($request, [
-            'video' => 'required|mimes:webm,mp4,mp4v,mpg4',
+            'video' => 'required|mimes:webm,mp4,mp4v,mpg4|size:512000',
             'title' => 'required|string',
             'description' => 'required|string',
             'category' => 'required|in:'. implode(',', $this->getCategories('id')->pluck('id')->toArray())
